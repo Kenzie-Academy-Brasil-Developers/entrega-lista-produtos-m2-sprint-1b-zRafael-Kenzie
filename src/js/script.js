@@ -9,61 +9,51 @@ function renderizarVitrine(array, categoriaSelecionada) {
 
 
     if (categoriaSelecionada == "Todos") {
-        array.forEach(elem => {
-
-            let cardProdutos = document.createElement("li")
-            let imgProduto = document.createElement("img")
-            let nomeProduto = document.createElement("h3")
-            let categoriaProduto = document.createElement("span")
-            let precoProduto = document.createElement("p")
-            let btnComprar = document.createElement("button")
-            let nutrientes = document.createElement("p")
-            let divDeAlinhamento = document.createElement("div")
-
-            imgProduto.src = elem.img
-            imgProduto.alt = elem.nome
-            nomeProduto.innerText = elem.nome
-            categoriaProduto.innerText = elem.secao
-            precoProduto.innerText = `R$ ${elem.preco},00`
-            precoProduto.classList.add("price")
-            btnComprar.innerText = "Comprar"
-            btnComprar.id = elem.id
-            nutrientes.innerHTML = nutrients(elem.componentes)
-
-            divDeAlinhamento.append(precoProduto, btnComprar)
-            cardProdutos.append(imgProduto, nomeProduto, categoriaProduto, nutrientes, divDeAlinhamento)
-            containerProdutos.appendChild(cardProdutos)
+        array.forEach(elemento => {
+            containerProdutos.appendChild(criarCard(elemento))
         })
     } else {
-        array.forEach(elem => {
-            if (elem.secao == categoriaSelecionada) {
+        array.forEach(elemento => {
+            if (elemento.secao == categoriaSelecionada) {
 
-                let cardProdutos = document.createElement("li")
-                let imgProduto = document.createElement("img")
-                let nomeProduto = document.createElement("h3")
-                let categoriaProduto = document.createElement("span")
-                let precoProduto = document.createElement("p")
-                let btnComprar = document.createElement("button")
-                let nutrientes = document.createElement("p")
-                let divDeAlinhamento = document.createElement("div")
-
-                imgProduto.src = elem.img
-                imgProduto.alt = elem.nome
-                nomeProduto.innerText = elem.nome
-                categoriaProduto.innerText = elem.secao
-                precoProduto.innerText = `R$ ${elem.preco},00`
-                precoProduto.classList.add("price")
-                btnComprar.innerText = "Comprar"
-                btnComprar.id = elem.id
-                nutrientes.innerHTML = nutrients(elem.componentes)
-
-                divDeAlinhamento.append(precoProduto, btnComprar)
-                cardProdutos.append(imgProduto, nomeProduto, categoriaProduto, nutrientes, divDeAlinhamento)
-                containerProdutos.appendChild(cardProdutos)
+          containerProdutos.appendChild(criarCard(elemento))
             }
         })
     }
 }
+
+function criarCard(elem){
+    
+    let cardProdutos = document.createElement("li")
+    let imgProduto = document.createElement("img")
+    let nomeProduto = document.createElement("h3")
+    let categoriaProduto = document.createElement("span")
+    let precoProduto = document.createElement("p")
+    let btnComprar = document.createElement("button")
+    let nutrientes = document.createElement("p")
+    let divDeAlinhamento = document.createElement("div")
+
+    imgProduto.src = elem.img
+    imgProduto.alt = elem.nome
+    nomeProduto.innerText = elem.nome
+    categoriaProduto.innerText = elem.secao
+    precoProduto.innerText = `R$ ${elem.preco},00`
+    precoProduto.classList.add("price")
+    btnComprar.innerText = "Comprar"
+    btnComprar.id = elem.id
+    nutrientes.innerHTML = nutrients(elem.componentes)
+
+
+    divDeAlinhamento.append(precoProduto, btnComprar)
+    cardProdutos.append(imgProduto, nomeProduto, categoriaProduto, nutrientes, divDeAlinhamento)
+    
+    return cardProdutos
+}
+
+
+
+
+
 function nutrients(nutrientsArray) {
 
     let nutrients = []
@@ -226,7 +216,7 @@ function listarNoCarrinho(products) {
     tagSpan.classList.add("valorProduto")
     trashButton.classList.add("trash")
     categoria.classList.add("Categoria")
-    
+
     tagLi.append(tagImg,tagH2,categoria,tagSpan,trashButton)
  
 
