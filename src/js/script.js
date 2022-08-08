@@ -1,7 +1,7 @@
 let listaDeProdutos = document.querySelector("ul")
 let arrayCategorias = ["Todos", "Hortifruti", "Panificadora", "Laticínios"]
 let arrayDeBusca = []
-
+let carrinhoCompras = []
 
 function renderizarVitrine(array, categoriaSelecionada) {
     let containerProdutos = document.querySelector(".containerListaProdutos ul")
@@ -228,6 +228,7 @@ function listarNoCarrinho(products) {
     categoria.classList.add("Categoria")
     
     tagLi.append(tagImg,tagH2,categoria,tagSpan,trashButton)
+ 
 
     return tagLi
 
